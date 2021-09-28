@@ -1,4 +1,5 @@
 ﻿using System;
+using Newtonsoft.Json;
 
 namespace dfs_words
 {
@@ -13,9 +14,9 @@ namespace dfs_words
                 {'A','B','C','D'},
             };
 
-            var word = "AABBCD";
+            var word = "AABBCDDD";
 
-            Console.WriteLine(Searcher.Search(matrix, word));
+            Console.WriteLine(JsonConvert.SerializeObject(Searcher.Search(matrix, word), Formatting.Indented));
         }
     }
 }
