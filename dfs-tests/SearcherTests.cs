@@ -64,7 +64,7 @@ public class SearcherTests
             {'S','K','E'}
         };
 
-        var (s, p) = Searcher.CheckRecursive(m, new List<char>("SNAKEFUNS"), (2,0), new List<(int,int)>());
+        var (s, p) = Searcher.Search(m, "SNAKEFUNS");
 
         Assert.True(s);
         p.Should().BeEquivalentTo(new List<(int,int)>() { 
