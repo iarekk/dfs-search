@@ -54,4 +54,28 @@ public class SearcherTests
         Assert.True(s);
         p.Should().BeEquivalentTo(new List<(int,int)>() { (3,0), (2,0), (2,1), (1,1), (1,2), (1,3)  });
     }
+
+    [Fact]
+    public void ComplexTest2()
+    {
+        char[,] m = new char[,]{
+            {'S','N','U'},
+            {'N','A','F'},
+            {'S','K','E'}
+        };
+
+        var (s, p) = Searcher.CheckRecursive(m, new List<char>("SNAKEFUNS"), (2,0), new List<(int,int)>());
+
+        Assert.True(s);
+        p.Should().BeEquivalentTo(new List<(int,int)>() { 
+            (2,0), 
+            (1,0), 
+            (1,1), 
+            (2,1), 
+            (2,2), 
+            (1,2),
+            (0,2),
+            (0,1),
+            (0,0)});
+    }
 }

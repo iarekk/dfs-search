@@ -40,7 +40,7 @@ public static class Searcher
             return bad;
         }
 
-        if(matrix[row, col] == wordRemaining[0])
+        if (matrix[row, col] == wordRemaining[0])
         {
             var newPath = CopyAppend(currentPath, candidatePoint);
             if (wordRemaining.Count == 1)
@@ -50,19 +50,25 @@ public static class Searcher
 
             var remWord = wordRemaining.Skip(1).ToList();
 
-            {var (upResult, upPath) = CheckRecursive(matrix, remWord, (row-1, col), newPath);
-            if(upResult){ return (true, upPath); }}
+            {
+                var (upResult, upPath) = CheckRecursive(matrix, remWord, (row-1, col), newPath);
+                if(upResult){ return (true, upPath); }
+            }
 
-            {var (rightResult, rightPath) = CheckRecursive(matrix, remWord, (row, col+1), newPath);
-            if(rightResult){ return (true, rightPath); }}
+            {
+                var (rightResult, rightPath) = CheckRecursive(matrix, remWord, (row, col+1), newPath);
+                if(rightResult){ return (true, rightPath); }
+            }
 
-            {var (downResult, downPath) = CheckRecursive(matrix, remWord, (row+1, col), newPath);
-            if(downResult){ return (true, downPath); }}
+            {
+                var (downResult, downPath) = CheckRecursive(matrix, remWord, (row+1, col), newPath);
+                if(downResult){ return (true, downPath); }
+            }
 
-            {var (leftResult, leftPath) = CheckRecursive(matrix, remWord, (row+1, col), newPath);
-            if(leftResult){ return (true, leftPath); }}
-
-            
+            {
+                var (leftResult, leftPath) = CheckRecursive(matrix, remWord, (row, col-1), newPath);
+                if(leftResult){ return (true, leftPath); }
+            }            
         }
 
         
