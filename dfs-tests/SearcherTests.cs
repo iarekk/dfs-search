@@ -1,5 +1,6 @@
 using Xunit;
 using System.Collections.Generic;
+using System.Collections.Immutable;
 using FluentAssertions;
 
 public class SearcherTests
@@ -11,7 +12,7 @@ public class SearcherTests
             {'A', 'B'},
             {'C', 'D'},
         };
-        var currentPath = new List<(int,int)> { (0,1)};
+        var currentPath = new List<(int,int)> { (0,1)}.ToImmutableList();
         var candidate = (0,0);
         var word = new List<char>(){'A'};
         var (s, p) = Searcher.CheckRecursive(m, word, candidate, currentPath);
@@ -28,7 +29,7 @@ public class SearcherTests
             {'A', 'B'},
             {'C', 'D'},
         };
-        var currentPath = new List<(int,int)> { (0,1)};
+        var currentPath = new List<(int,int)> { (0,1)}.ToImmutableList();
         var candidate = (0,0);
         var word = new List<char>(){'B'};
         var (s, p) = Searcher.CheckRecursive(m, word, candidate, currentPath);
@@ -49,7 +50,7 @@ public class SearcherTests
         };
 
         var word = new List<char>("AABBCD");
-        var (s, p) = Searcher.CheckRecursive(m, word, (3,0), new List<(int,int)>());
+        var (s, p) = Searcher.CheckRecursive(m, word, (3,0), ImmutableList<(int,int)>.Empty);
 
         Assert.True(s);
         p.Should().BeEquivalentTo(new List<(int,int)>() { (3,0), (2,0), (2,1), (1,1), (1,2), (1,3)  });
